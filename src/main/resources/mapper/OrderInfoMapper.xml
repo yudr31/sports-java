@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spring.boot.sports.mapper.OrderInfoMapper" >
+
+    <sql id="Base_Column_List" >
+        gid as "gid",
+        shop_id as "shopId",
+        arena as "arena",
+        item as "item",
+        order_no as "orderNo",
+        book_date as "bookDate",
+        order_date as "orderDate",
+        court as "court",
+        start_time as "startTime",
+        space_time as "spaceTime",
+        amount as "amount",
+        verify_code as "verifyCode",
+        pay_status as "payStatus",
+        address as "address",
+        status as "status",
+        update_user as "updateUser",
+        create_user as "createUser",
+        update_time as "updateTime",
+        create_time as "createTime"
+    </sql>
+
+    <select id="fetchRecordList" resultType="com.spring.boot.sports.bean.OrderInfo">
+        SELECT
+        <include refid="Base_Column_List" ></include>
+        FROM order_info s0
+        <include refid="findOrderInfoWhere"></include>
+        ORDER BY update_time DESC
+    </select>
+
+    <select id="fetchRecordSortList" resultType="com.spring.boot.sports.bean.OrderInfo">
+        SELECT
+        <include refid="Base_Column_List" ></include>
+        FROM order_info s0
+
+        <if test="sortStr != null">
+            ORDER BY ${sortStr}
+        </if>
+    </select>
+
+    <sql id="findOrderInfoWhere">
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <include refid="orderInfoSql" ></include>
+        </trim>
+    </sql>
+
+    <sql id="orderInfoSql">
+        <if test="gid != null and gid != ''">
+            AND s0.gid LIKE CONCAT('%',#{gid,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="shopId != null and shopId != ''">
+            AND s0.shop_id LIKE CONCAT('%',#{shopId,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="arena != null and arena != ''">
+            AND s0.arena LIKE CONCAT('%',#{arena,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="item != null and item != ''">
+            AND s0.item LIKE CONCAT('%',#{item,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="orderNo != null and orderNo != ''">
+            AND s0.order_no LIKE CONCAT('%',#{orderNo,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="bookDate != null">
+            AND s0.book_date = #{bookDate,jdbcType=DATE}
+        </if>
+        <if test="orderDate != null">
+            AND s0.order_date = #{orderDate,jdbcType=DATE}
+        </if>
+        <if test="court != null and court != ''">
+            AND s0.court LIKE CONCAT('%',#{court,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="startTime != null and startTime != ''">
+            AND s0.start_time LIKE CONCAT('%',#{startTime,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="spaceTime != null and spaceTime != ''">
+            AND s0.space_time LIKE CONCAT('%',#{spaceTime,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="amount != null and amount != ''">
+            AND s0.amount LIKE CONCAT('%',#{amount,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="verifyCode != null and verifyCode != ''">
+            AND s0.verifyCode LIKE CONCAT('%',#{verifyCode,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="payStatus != null and payStatus != ''">
+            AND s0.pay_status LIKE CONCAT('%',#{payStatus,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="address != null and address != ''">
+            AND s0.address LIKE CONCAT('%',#{address,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="status != null">
+            AND s0.status = #{status,jdbcType=INTEGER}
+        </if>
+    </sql>
+
+</mapper>

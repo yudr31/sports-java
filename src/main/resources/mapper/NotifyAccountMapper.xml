@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spring.boot.sports.mapper.NotifyAccountMapper" >
+
+    <sql id="Base_Column_List" >
+        gid as "gid",
+        user_name as "userName",
+        phone as "phone",
+        verify_flag as "verifyFlag",
+        verify_code as "verifyCode",
+        status as "status",
+        update_user as "updateUser",
+        create_user as "createUser",
+        update_time as "updateTime",
+        create_time as "createTime"
+    </sql>
+
+    <select id="fetchRecordList" resultType="com.spring.boot.sports.bean.NotifyAccount">
+        SELECT
+        <include refid="Base_Column_List" ></include>
+        FROM notify_account s0
+        <include refid="findNotifyAccountWhere"></include>
+        ORDER BY update_time DESC
+    </select>
+
+    <sql id="findNotifyAccountWhere">
+        <trim prefix="WHERE" prefixOverrides="AND|OR">
+            <include refid="notifyAccountSql" ></include>
+        </trim>
+    </sql>
+
+    <sql id="notifyAccountSql">
+        <if test="gid != null and gid != ''">
+            AND s0.gid LIKE CONCAT('%',#{gid,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="userName != null and userName != ''">
+            AND s0.user_name LIKE CONCAT('%',#{userName,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="phone != null and phone != ''">
+            AND s0.phone LIKE CONCAT('%',#{phone,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="verifyFlag != null and verifyFlag != ''">
+            AND s0.verify_flag LIKE CONCAT('%',#{verifyFlag,jdbcType=VARCHAR},'%')
+        </if>
+        <if test="status != null">
+            AND s0.status = #{status,jdbcType=INTEGER}
+        </if>
+    </sql>
+
+</mapper>
