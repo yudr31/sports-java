@@ -9,7 +9,7 @@
         salt_random as "saltRandom",
         nickname as "nickname",
         signature as "signature",
-        status as "status",
+        record_status as "recordStatus",
         update_user as "updateUser",
         create_user as "createUser",
         update_time as "updateTime",
@@ -56,8 +56,8 @@
         <if test="signature != null and signature != ''">
             AND s0.signature LIKE CONCAT('%',#{signature,jdbcType=VARCHAR},'%')
         </if>
-        <if test="status != null">
-            AND s0.status = #{status,jdbcType=INTEGER}
+        <if test="recordStatus != null">
+            AND s0.record_status = #{recordStatus,jdbcType=INTEGER}
         </if>
     </sql>
 
