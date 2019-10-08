@@ -18,7 +18,7 @@ public class BaseBean {
     @Id
     @Validation(max = 32)
     private String gid;
-    private Integer status;
+    private Integer recordStatus;
     private String createUser;
     private String updateUser;
     private LocalDateTime createTime;
@@ -26,7 +26,7 @@ public class BaseBean {
 
     public void initCreateInfo(String userId){
         this.gid = IdGenerator.generateId();
-        this.status = 101;
+        this.recordStatus = 101;
         if (null != userId){
             this.createUser = userId;
         }
