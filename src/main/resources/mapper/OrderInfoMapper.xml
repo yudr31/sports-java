@@ -17,7 +17,7 @@
         verify_code as "verifyCode",
         pay_status as "payStatus",
         address as "address",
-        status as "status",
+        record_status as "recordStatus",
         update_user as "updateUser",
         create_user as "createUser",
         update_time as "updateTime",
@@ -91,8 +91,8 @@
         <if test="address != null and address != ''">
             AND s0.address LIKE CONCAT('%',#{address,jdbcType=VARCHAR},'%')
         </if>
-        <if test="status != null">
-            AND s0.status = #{status,jdbcType=INTEGER}
+        <if test="recordStatus != null">
+            AND s0.record_status = #{recordStatus,jdbcType=INTEGER}
         </if>
     </sql>
 
