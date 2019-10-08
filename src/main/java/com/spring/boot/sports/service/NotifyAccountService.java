@@ -19,7 +19,7 @@ public class NotifyAccountService extends BaseService<NotifyAccountMapper, Notif
     public Integer removeRecord(String gid){
         NotifyAccount notifyAccount = new NotifyAccount();
         notifyAccount.setGid(gid);
-        notifyAccount.setStatus(REMOVE_STATUS);
+        notifyAccount.setRecordStatus(REMOVE_STATUS);
         return updateSelectiveByKey(notifyAccount);
     }
 
