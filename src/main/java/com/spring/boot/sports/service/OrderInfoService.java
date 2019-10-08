@@ -28,7 +28,7 @@ public class OrderInfoService extends BaseService<OrderInfoMapper, OrderInfo> {
     public Integer removeRecord(String gid){
         OrderInfo orderInfo = new OrderInfo();
         orderInfo.setGid(gid);
-        orderInfo.setStatus(REMOVE_STATUS);
+        orderInfo.setRecordStatus(REMOVE_STATUS);
         return updateSelectiveByKey(orderInfo);
     }
 
@@ -40,7 +40,7 @@ public class OrderInfoService extends BaseService<OrderInfoMapper, OrderInfo> {
 
     public List<OrderInfo> fetchRecordSortList(OrderInfo orderInfo){
         String sortStr = "book_date desc";
-        orderInfo.setStatus(AVAILABLE_STATUS);
+        orderInfo.setRecordStatus(AVAILABLE_STATUS);
         return orderInfoMapper.fetchRecordSortList(orderInfo,sortStr);
     }
 
