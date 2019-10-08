@@ -31,7 +31,7 @@ public class BookingInfoService extends BaseService<BookingInfoMapper, BookingIn
     public Integer removeRecord(String gid){
         BookingInfo bookingInfo = new BookingInfo();
         bookingInfo.setGid(gid);
-        bookingInfo.setStatus(REMOVE_STATUS);
+        bookingInfo.setRecordStatus(REMOVE_STATUS);
         return updateSelectiveByKey(bookingInfo);
     }
 
