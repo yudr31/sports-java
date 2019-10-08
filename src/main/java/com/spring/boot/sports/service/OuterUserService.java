@@ -15,7 +15,7 @@ public class OuterUserService extends BaseService<OuterUserMapper, OuterUser> {
     public Integer removeRecord(String gid){
         OuterUser outerUser = new OuterUser();
         outerUser.setGid(gid);
-        outerUser.setStatus(REMOVE_STATUS);
+        outerUser.setRecordStatus(REMOVE_STATUS);
         return updateSelectiveByKey(outerUser);
     }
 
