@@ -33,7 +33,7 @@ public class BaseService<T1 extends BaseBeanMapper<T2>, T2 extends BaseBean> {
     }
 
     public List<T2> fetchRecordList(T2 t2){
-        t2.setStatus(AVAILABLE_STATUS);
+        t2.setRecordStatus(AVAILABLE_STATUS);
         return baseMapper.fetchRecordList(t2);
     }
 
