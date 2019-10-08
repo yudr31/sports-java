@@ -8,7 +8,7 @@
         phone as "phone",
         verify_flag as "verifyFlag",
         verify_code as "verifyCode",
-        status as "status",
+        record_status as "recordStatus",
         update_user as "updateUser",
         create_user as "createUser",
         update_time as "updateTime",
@@ -42,8 +42,8 @@
         <if test="verifyFlag != null and verifyFlag != ''">
             AND s0.verify_flag LIKE CONCAT('%',#{verifyFlag,jdbcType=VARCHAR},'%')
         </if>
-        <if test="status != null">
-            AND s0.status = #{status,jdbcType=INTEGER}
+        <if test="recordStatus != null">
+            AND s0.record_status = #{recordStatus,jdbcType=INTEGER}
         </if>
     </sql>
 
